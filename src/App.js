@@ -35,6 +35,7 @@ class App extends Component {
     });
     if (!status) {
       cookie.remove('id');
+      cookie.remove('token');
     }
   }
 
@@ -90,19 +91,19 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <Switch>
-          <Redirect exact from="/" to="/home" />
-        </Switch>
-        <div>
-          {this.renderNavbar()}
-          <Route path="/login" render={this.renderLogin} />
-          <Route path="/home" component={Home} />
-          <Route path="/register" component={Register} />
-          <Route path="/stock" component={Stock} />
-          <Route path="/profile" component={Profile} />
-        </div>
-      </Router>
+        <Router>
+          <Switch>
+            <Redirect exact from="/" to="/home" />
+          </Switch>
+          <div>
+            {this.renderNavbar()}
+            <Route path="/login" render={this.renderLogin} />
+            <Route path="/home" component={Home} />
+            <Route path="/register" component={Register} />
+            <Route path="/stock" component={Stock} />
+            <Route path="/profile" component={Profile} />
+          </div>
+        </Router>
     );
   }
 }

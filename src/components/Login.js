@@ -8,8 +8,7 @@ import { UserLogin } from '../utils/Api';
 import '../css/Login.css';
 
 const Login = ({ callback }) => {
-  // eslint-disable-next-line
-    const [apireturn, setApiReturn] = useState("");
+  const [apireturn, setApiReturn] = useState("");
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,9 +21,9 @@ const Login = ({ callback }) => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    // eslint-disable-next-line no-unused-vars
     UserLogin(email, password).then((response) => {
-      cookie.save('id', 'Toto', { path: '/' });
+      cookie.save('id', response.data.id, { path: '/' });
+      cookie.save('token', response.data.token, { path: '/' });
       callback(true);
       history.push('/home');
     }).catch((error) => {
