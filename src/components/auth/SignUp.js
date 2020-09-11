@@ -1,5 +1,7 @@
 import React from 'react';
-import { UserRegister } from '../../utils/Api';
+//import { UserRegister } from '../../utils/Api';
+import { connect } from 'react-redux';
+import { logIn } from '../../store/action/authActions';
 import history from '../../history';
 
 class SignUp extends React.Component {
@@ -17,12 +19,8 @@ class SignUp extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        UserRegister(this.state.username, this.state.email, this.state.password).then((response) =>{
-            history.push('/signin');
-        }).catch((error) => {
-            alert(error);
-        })
-        //console.log(this.state);
+        this.props.logIn(this.state);
+        history.push('/signin');
     }
 
     render() {
@@ -51,4 +49,14 @@ class SignUp extends React.Component {
     }
 }
 
-export default SignUp;
+const mapStateToProps=(state)=>{
+    return state;
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logIn: (creds) => dispatch(logIn(creds))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

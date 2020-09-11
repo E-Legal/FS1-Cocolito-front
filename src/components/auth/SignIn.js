@@ -1,7 +1,6 @@
 import React from 'react';
-//import history from '../../history';
 import { connect } from 'react-redux';
-import { signIn } from "../../store/action/authActions";
+import { signIn } from '../../store/action/authActions';
 
 class SignIn extends React.Component {
     state = {
@@ -18,7 +17,6 @@ class SignIn extends React.Component {
     handleSubmit = (e) => {
       e.preventDefault();
       this.props.signIn(this.state);
-      //history.push('/profile');
     }
 
     render() {

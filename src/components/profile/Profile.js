@@ -1,5 +1,7 @@
 import React from 'react';
 import { GetProfile } from '../../utils/Api';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 class Profile extends React.Component {
     state = {
@@ -9,16 +11,21 @@ class Profile extends React.Component {
     }
 
     componentDidMount() {
-        GetProfile().then((response) => {
-            this.setState({
-                username: response.data.username,
-                id: response.data.id,
-                email: response.data.email,
+        const { auth } = this.props;
+        if (auth.auth.IsAuth) {
+            GetProfile().then((response) => {
+                this.setState({
+                    username: response.data.username,
+                    id: response.data.id,
+                    email: response.data.email,
+                })
             })
-        })
+        }
     }
 
     render() {
+        const { auth } = this.props;
+        if (!auth.auth.IsAuth) return <Redirect to="/signin" />
         return (
             <div className="container">
                 <div className="row">
@@ -32,4 +39,8 @@ class Profile extends React.Component {
     }
 }
 
-export default Profile;
+const mapStateToProps = (state) => ({
+    auth: state,
+});
+
+export default connect(mapStateToProps)(Profile);

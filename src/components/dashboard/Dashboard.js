@@ -1,5 +1,7 @@
 import React from 'react';
 import ProjectList from '../projects/ProjectList';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -21,6 +23,9 @@ class Dashboard extends React.Component {
 
   render() {
     const projects = this.state;
+    const { auth } = this.props;
+    if (!auth.auth.IsAuth) return <Redirect to="/signin" />
+
     return (
       <div className="dashboard container">
         <div className="row">
@@ -33,4 +38,8 @@ class Dashboard extends React.Component {
   }
 }
 
-export default Dashboard;
+const mapStateToProps = (state) => ({
+  auth: state,
+});
+
+export default connect(mapStateToProps)(Dashboard);

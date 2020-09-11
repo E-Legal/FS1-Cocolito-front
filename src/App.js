@@ -6,11 +6,8 @@ import Dashboard from './components/dashboard/Dashboard';
 import ProjectDetails from './components/projects/ProjectDetails';
 import Profile from './components/profile/Profile';
 import ProfilebyID from './components/profile/ProfilebyID';
-// eslint-disable-next-line import/no-named-as-default,import/no-named-as-default-member
 import SignIn from './components/auth/SignIn';
-// eslint-disable-next-line import/no-named-as-default,import/no-named-as-default-member
 import SignUp from './components/auth/SignUp';
-// eslint-disable-next-line import/no-named-as-default,import/no-named-as-default-member
 import CreateProject from './components/projects/CreateProject';
 
 function App() {

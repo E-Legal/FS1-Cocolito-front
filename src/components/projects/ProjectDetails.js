@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 class ProjectDetails extends React.Component {
   constructor(props) {
@@ -21,6 +23,8 @@ class ProjectDetails extends React.Component {
 
   render() {
     const project = this.state;
+    const { auth } = this.props;
+    if (!auth.auth.IsAuth) return <Redirect to="/signin" />
     return (
       <div className="container section project-details">
         <div className="card z-depth-0">
@@ -47,4 +51,8 @@ class ProjectDetails extends React.Component {
   }
 }
 
-export default ProjectDetails;
+const mapStateToProps = (state) => ({
+  auth: state,
+});
+
+export default connect(mapStateToProps)(ProjectDetails);

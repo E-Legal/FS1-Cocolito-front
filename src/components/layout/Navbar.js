@@ -6,7 +6,6 @@ import SignedOutLinks from './SignedOutLink';
 
 const Navigation = (props) => {
   const { auth } = props;
-  console.log(auth.auth);
   const links = auth.auth.IsAuth ? <SignedInLinks /> : <SignedOutLinks />;
 
   return (

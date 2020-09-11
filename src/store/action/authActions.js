@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-export const signIn = (credentials) => (dispatch) => axios.post('https://fs1-cocolito-server.herokuapp.com/users/login', {
+const api_url = "https://fs1-cocolito-server.herokuapp.com";
+
+export const signIn = (credentials) => (dispatch) => axios.post(api_url + '/users/login', {
   email: credentials.email,
   password: credentials.password,
 }).then((response) => {
@@ -9,6 +11,16 @@ export const signIn = (credentials) => (dispatch) => axios.post('https://fs1-coc
   dispatch({ type: 'LOGIN_SUCCESS' });
 }).catch((err) => {
   dispatch({ type: 'LOGIN_ERROR', err });
+});
+
+export const logIn = (credentials) => (dispatch) => axios.post(api_url + '/users/register', {
+  email: credentials.email,
+  username: credentials.username,
+  password: credentials.password
+}).then(() => {
+  dispatch({ type: 'SIGNIN_SUCCESS' });
+}).catch((err) => {
+  dispatch({ type: 'SIGNIN_ERROR', err })
 });
 
 export const signOut = () => (dispatch) => {
