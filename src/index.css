@@ -5,6 +5,17 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: url("https://gameboss.eu/wp-content/uploads/2019/04/34-asana-color-gradient.jpg") no-repeat;
+  background-size: 100%;
+}
+
+form {
+  padding: 20px;
+  margin-top: 60px;
+}
+
+form button form h5 {
+  margin: 20px 0;
 }
 
 code {
