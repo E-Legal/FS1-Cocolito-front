@@ -2,6 +2,7 @@ const checkToken = (localStorage.getItem('token') !== null);
 
 const initState = {
   IsAuth: checkToken,
+  profile: {},
 };
 
 const authReducer = (state = initState, action) => {
@@ -33,6 +34,28 @@ const authReducer = (state = initState, action) => {
       return {
         ...state,
         IsAuth: false,
+      };
+    case 'GET_PROFILE_SUCCESS':
+      console.log('get profile success');
+      return {
+        ...state,
+        profile: action.profile,
+      };
+    case 'GET_PROFILE_FAIL':
+      console.log('get profile fail');
+      return {
+        ...state,
+      };
+    case 'GET_PROFILEID_SUCCESS':
+      console.log('get profileid succes');
+      return {
+        ...state,
+        profile: action.profile,
+      };
+    case 'GET_PROFILEID_FAIL':
+      console.log('get profileid fail');
+      return {
+        ...state,
       };
     default:
       return state;

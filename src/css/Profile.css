@@ -1,0 +1,20 @@
+.profile_page h1 {
+    color: #FFF;
+    font-size: 50px;
+}
+
+.profile_content {
+    display: inline-block;
+    text-align: center;
+}
+
+.profile_page h5 {
+    text-decoration: underline;
+    color: #2c3e50;
+}
+
+.profile_page span {
+    color: #ecf0f1;
+    font-size: 25px;
+    font-weight: bold;
+}

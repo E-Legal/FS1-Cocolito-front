@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const api_url = "https://fs1-cocolito-server.herokuapp.com";
+const api_url = 'https://fs1-cocolito-server.herokuapp.com';
 
-export const signIn = (credentials) => (dispatch) => axios.post(api_url + '/users/login', {
+export const signIn = (credentials) => (dispatch) => axios.post(`${api_url}/users/login`, {
   email: credentials.email,
   password: credentials.password,
 }).then((response) => {
@@ -13,14 +13,14 @@ export const signIn = (credentials) => (dispatch) => axios.post(api_url + '/user
   dispatch({ type: 'LOGIN_ERROR', err });
 });
 
-export const logIn = (credentials) => (dispatch) => axios.post(api_url + '/users/register', {
+export const logIn = (credentials) => (dispatch) => axios.post(`${api_url}/users/register`, {
   email: credentials.email,
   username: credentials.username,
-  password: credentials.password
+  password: credentials.password,
 }).then(() => {
   dispatch({ type: 'SIGNIN_SUCCESS' });
 }).catch((err) => {
-  dispatch({ type: 'SIGNIN_ERROR', err })
+  dispatch({ type: 'SIGNIN_ERROR', err });
 });
 
 export const signOut = () => (dispatch) => {
@@ -28,3 +28,37 @@ export const signOut = () => (dispatch) => {
   localStorage.removeItem('id');
   dispatch({ type: 'SIGNOUT_SUCCES' });
 };
+
+export const getProfile = () => (dispatch) => axios.get(`${api_url}/users/profile`, {
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
+  },
+}).then((response) => {
+  dispatch(GetProfile(response.data));
+}).catch((err) => {
+  dispatch({ type: 'GET_PROFILE_FAIL' }, err);
+});
+
+export const getProfileId = (userid) => (dispatch) => axios.get(api_url + '/users/' + userid.id, {
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('token')}`,
+  },
+}).then((response) => {
+  dispatch(GetProfileId(response.data));
+}).catch((err) => {
+  dispatch({ type: 'GET_PROFILEID_FAIL' }, err);
+});
+
+export function GetProfileId(profile) {
+  return {
+    type: 'GET_PROFILEID_SUCCESS',
+    profile,
+  };
+}
+
+export function GetProfile(profile) {
+  return {
+    type: 'GET_PROFILE_SUCCESS',
+    profile,
+  };
+}
