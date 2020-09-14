@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { createProject } from '../../store/action/projectActions';
 import { Redirect } from 'react-router-dom';
 
 class CreateProject extends React.Component {
     state = {
         title: '',
-        content: ''
+        message: ''
     }
 
     handleChange = (e) => {
@@ -16,7 +17,7 @@ class CreateProject extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state);
+        this.props.createProject(this.state);
     }
 
     render() {
@@ -47,4 +48,10 @@ const mapStateToProps = (state) => ({
     auth: state,
 });
 
-export default connect(mapStateToProps)(CreateProject);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createProject: (project) => dispatch(createProject(project))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateProject);

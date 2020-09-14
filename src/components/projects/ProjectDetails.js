@@ -2,48 +2,42 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { oneProject } from "../../store/action/projectActions";
 
 class ProjectDetails extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      project_details: {},
-    };
-  }
 
   componentDidMount() {
     // API CALL FOR DATA avec l'id du poste const { id } = this.props.match.params
-    const { id } = this.props.match.params;
+    /*const { id } = this.props.match.params;
     this.setState({
       project_details: {
         id, title: 'Ma journée', content: 'Bonjour tout le monde', author: 'Akisen', userid: '45',
       },
-    });
+    });*/
+    this.props.oneProject(this.props.match.params);
   }
 
   render() {
-    const project = this.state;
-    const { auth } = this.props;
+    const { auth, project } = this.props;
     if (!auth.auth.IsAuth) return <Redirect to="/signin" />
     return (
       <div className="container section project-details">
         <div className="card z-depth-0">
           <div className="card-content">
             <span className="card-title">
-              {project.project_details.title}
+              {project.project.project.title}
               -
-              {project.project_details.id}
+              {project.project.project.id}
             </span>
-            <p>{project.project_details.content}</p>
+            <p>{project.project.project.message}</p>
           </div>
           <div className="card-action grey lighten-4 green-text">
-            <Link to={`/profile/${project.project_details.userid}`} key={project.project_details.userid}>
-              <div>
-                Posted by
-                {project.project_details.author}
-              </div>
+            <Link to={`/profile/${project.project.project.user_id}`} key={project.project.project.user_id}>
+              <pre>
+                Posted by {project.project.project.username}
+              </pre>
             </Link>
-            <div>2nd September, 2am</div>
+            <div>{project.project.project.createdDate}</div>
           </div>
         </div>
       </div>
@@ -53,6 +47,13 @@ class ProjectDetails extends React.Component {
 
 const mapStateToProps = (state) => ({
   auth: state,
+  project: state,
 });
 
-export default connect(mapStateToProps)(ProjectDetails);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    oneProject: (id) => dispatch(oneProject(id))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectDetails);

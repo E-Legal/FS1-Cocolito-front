@@ -2,35 +2,21 @@ import React from 'react';
 import ProjectList from '../projects/ProjectList';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { allProject } from '../../store/action/projectActions';
 
 class Dashboard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      projects: [
-        {
-          id: '10', title: 'Kikou', content: 'Lorem', author: 'Akisen',
-        },
-        {
-          id: '20', title: 'Zbaub', content: 'Lorem', author: 'Quentin',
-        },
-        {
-          id: '30', title: 'Zboub', content: 'Lorem', author: 'Quantify',
-        },
-      ],
-    };
+  componentDidMount() {
+    this.props.allProject();
   }
 
   render() {
-    const projects = this.state;
-    const { auth } = this.props;
+    const { auth, projects } = this.props;
     if (!auth.auth.IsAuth) return <Redirect to="/signin" />
-
     return (
       <div className="dashboard container">
         <div className="row">
           <div className="col s12">
-            <ProjectList projects={projects.projects} />
+            <ProjectList projects={projects.project.projects} />
           </div>
         </div>
       </div>
@@ -40,6 +26,13 @@ class Dashboard extends React.Component {
 
 const mapStateToProps = (state) => ({
   auth: state,
+  projects: state,
 });
 
-export default connect(mapStateToProps)(Dashboard);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    allProject: () => dispatch(allProject())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
