@@ -2,9 +2,9 @@ import axios from 'axios';
 
 const api_url = 'https://fs1-cocolito-server.herokuapp.com';
 
-export const createProject = (project) => (dispatch) => axios.post(`${api_url}/posts`, {
-  title: project.title,
-  message: project.content,
+export const createProject = (title, message) => (dispatch) => axios.post(`${api_url}/posts`, {
+  title,
+  message,
 }, {
   headers: {
     Authorization: `Bearer ${localStorage.getItem('token')}`,
