@@ -8,6 +8,7 @@ export const signIn = (email, password) => (dispatch) => axios.post(`${api_url}/
 }).then((response) => {
   localStorage.setItem('token', response.data.token);
   localStorage.setItem('id', response.data.id);
+  localStorage.setItem('username', response.data.username);
   dispatch({ type: 'LOGIN_SUCCESS' });
 }).catch((err) => {
   dispatch({ type: 'LOGIN_ERROR', err });
@@ -26,6 +27,7 @@ export const logIn = (email, username, password) => (dispatch) => axios.post(`${
 export const signOut = () => (dispatch) => {
   localStorage.removeItem('token');
   localStorage.removeItem('id');
+  localStorage.removeItem('username');
   dispatch({ type: 'SIGNOUT_SUCCES' });
 };
 

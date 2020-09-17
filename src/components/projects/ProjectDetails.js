@@ -12,7 +12,7 @@ const ProjectDetails = (props) => {
   if (!auth.auth.IsAuth) return <Redirect to="/signin" />;
   return (
     <div className="container section project-details">
-      <div className="card z-depth-0">
+      <div className="card">
         <div className="card-content">
           <span className="card-title">
             {project.project.project.title}
