@@ -1,15 +1,3 @@
-/*const initState = {
-  projects: [
-    {
-      title: '',
-      message: '',
-      username: '',
-      user_id: '',
-      project_id: '',
-    },
-  ],
-};*/
-
 const initState = {
   projects: [
   ],
@@ -27,7 +15,7 @@ const projectReducer = (state = initState, action) => {
     case 'PROJECT_FAILED':
       console.log('project created fail');
       return {
-        ...state
+        ...state,
       };
     case 'ALL_PROJECT_SUCCES':
       console.log('all project success ');
@@ -38,18 +26,18 @@ const projectReducer = (state = initState, action) => {
     case 'ALL_PROJECT_FAIL':
       console.log('all project get fail');
       return {
-        ...state
+        ...state,
       };
     case 'ONE_PROJECT_SUCCES':
       console.log('one project success');
       return {
         ...state,
-        project: action.project
+        project: action.project,
       };
     case 'ONE_PROJECT_FAIL':
       console.log('one project fail');
       return {
-        ...state
+        ...state,
       };
     default:
       return state;

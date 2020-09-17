@@ -24,15 +24,21 @@ const Chatroom = (props) => {
   const onMessageSubmit = (e) => {
     e.preventDefault();
     const { name, message } = state;
-    socket.emit('message', { name, message });
-    setStaet({ message: '', name });
+    if (message.length > 0) {
+      socket.emit('message', { name, message });
+      setStaet({ message: '', name });
+    }
   };
 
   const renderChat = () => chat.map(({ name, message }, index) => (
     <div key={index} className="card z-depth-0 project-summary">
       <div className="card-content green-text text-darken-3">
         <pre className="green-text">
-          {name} : <span>{message}</span>
+          {name}
+          {' '}
+          :
+          {' '}
+          {message}
         </pre>
       </div>
     </div>
@@ -53,12 +59,13 @@ const Chatroom = (props) => {
                 value={state.message}
                 multiline
                 rowsMax={20}
+                inputProps={{ min: 1 }}
                 id="filled-multiline-flexible"
                 variant="filled"
                 label="Message"
               />
             </div>
-            <button className="btn grey lighten-1 z-depth-0" >Send Message</button>
+            <button className="btn grey lighten-1 z-depth-0">Send Message</button>
           </form>
         </div>
         <div className="col s12 m6 chatroom_page">

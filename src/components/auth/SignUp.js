@@ -34,11 +34,16 @@ const SignUp = (props) => {
           <button className="btn pink lighten-1 z-depth-0">Sign up</button>
         </div>
       </form>
+      <div className="center red-text" style={{ fontSize: 20 }}>
+        { props.auth.auth.AuthError ? <p>{props.auth.auth.AuthError}</p> : null }
+      </div>
     </div>
   );
 };
 
-const mapStateToProps = (state) => state;
+const mapStateToProps = (state) => ({
+  auth: state,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   logIn: (email, username, password) => dispatch(logIn(email, username, password)),

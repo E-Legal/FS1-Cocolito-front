@@ -2,6 +2,7 @@ const checkToken = (localStorage.getItem('token') !== null);
 
 const initState = {
   IsAuth: checkToken,
+  AuthError: null,
   profile: {},
 };
 
@@ -17,18 +18,20 @@ const authReducer = (state = initState, action) => {
       console.log('login error');
       return {
         ...state,
+        AuthError: 'Login Fail',
         IsAuth: false,
       };
     case 'SIGNIN_SUCCESS':
       console.log('signing success');
       return {
         ...state,
-      }
+      };
     case 'SIGNIN_ERROR':
       console.log('signing error');
       return {
         ...state,
-      }
+        AuthError: 'Signing Fail',
+      };
     case 'SIGNOUT_SUCCESS':
       console.log('signout success');
       return {

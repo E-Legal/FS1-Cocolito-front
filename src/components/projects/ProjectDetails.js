@@ -15,9 +15,11 @@ const ProjectDetails = (props) => {
       <div className="card">
         <div className="card-content">
           <span className="card-title">
-            {project.project.project.title}
-            -
-            {project.project.project.id}
+            <pre>
+              {project.project.project.title}
+              -
+              {project.project.project.id}
+            </pre>
           </span>
           <p>{project.project.project.message}</p>
         </div>
