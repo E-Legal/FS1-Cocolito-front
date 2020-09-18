@@ -10,6 +10,7 @@ import Chatroom from './components/chatroom/Chatroom';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
 import CreateProject from './components/projects/CreateProject';
+import ChatLobby from './components/chatroom/ChatLobby';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/create" component={CreateProject} />
           <Route exact path="/profile" component={Profile} />
           <Route path="/profile/:id" component={ProfilebyID} />
+          <Route path="/chatlobby" component={ChatLobby} />
           <Route path="/chatroom" component={Chatroom} />
         </Switch>
       </div>
