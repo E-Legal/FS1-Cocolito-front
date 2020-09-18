@@ -16,7 +16,7 @@ const SignIn = (props) => {
 
   return (
     <div className="container">
-      <form onSubmit={handleSubmit} className="white">
+      <form onSubmit={handleSubmit} className="white form_other">
         <h5 className="grey-text text-darken-3">Sign In</h5>
         <div className="input-field">
           <label htmlFor="email">Email</label>

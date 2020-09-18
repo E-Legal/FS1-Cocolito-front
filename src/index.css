@@ -9,12 +9,12 @@ body {
   background-size: 100%;
 }
 
-form {
+.form_other {
   padding: 20px;
   margin-top: 60px;
 }
 
-form button form h5 {
+.form_other button .form_other h5 {
   margin: 20px 0;
 }
 
