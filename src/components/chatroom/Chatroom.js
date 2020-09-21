@@ -17,7 +17,7 @@ const Chatroom = (props) => {
   const [users, setUsers] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  const ENDPOINT = 'http://localhost:5000';
+  const ENDPOINT = 'https://fs1-cocolito-server.herokuapp.com';
 
   useEffect(() => {
     const { name, room } = queryString.parse(props.location.search);
