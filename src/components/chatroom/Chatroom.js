@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import queryString from 'query-string';
-import './Chatroom.css';
+import '../../css/Chatroom.css';
 import io from 'socket.io-client';
 import Messages from './Messages/Messages';
 import TextContainer from './TextContainer/TextContainer';
