@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const api_url = 'https://fs1-cocolito-server.herokuapp.com';
+const apiUrl = 'https://fs1-cocolito-server.herokuapp.com';
 
 export function AllProjectByUserId(project) {
   return {
@@ -23,7 +23,7 @@ export function AllProject(projects) {
   };
 }
 
-export const createProject = (title, message) => (dispatch) => axios.post(`${api_url}/posts`, {
+export const createProject = (title, message) => (dispatch) => axios.post(`${apiUrl}/posts`, {
   title,
   message,
 }, {
@@ -36,7 +36,7 @@ export const createProject = (title, message) => (dispatch) => axios.post(`${api
   dispatch({ type: 'PROJECT_FAILED' }, err);
 });
 
-export const allProject = () => (dispatch) => axios.get(`${api_url}/posts`, {
+export const allProject = () => (dispatch) => axios.get(`${apiUrl}/posts`, {
   headers: {
     Authorization: `Bearer ${localStorage.getItem('token')}`,
   },
@@ -46,7 +46,7 @@ export const allProject = () => (dispatch) => axios.get(`${api_url}/posts`, {
   dispatch({ type: 'ALL_PROJECT_FAIL' }, err);
 });
 
-export const oneProject = (id) => (dispatch) => axios.get(`${api_url}/posts/${id.id}`, {
+export const oneProject = (id) => (dispatch) => axios.get(`${apiUrl}/posts/${id.id}`, {
   headers: {
     Authorization: `Bearer ${localStorage.getItem('token')}`,
   },
@@ -56,12 +56,12 @@ export const oneProject = (id) => (dispatch) => axios.get(`${api_url}/posts/${id
   dispatch({ type: 'ONE_PROJECT_FAIL' }, err);
 });
 
-export const allProjectByUserId = (userid) => (dispatch) => axios.get(`${api_url}/posts/${userid}`, {
+export const allProjectByUserId = (userid) => (dispatch) => axios.get(`${apiUrl}/posts/${userid}`, {
   headers: {
     Authorization: `Bearer ${localStorage.getItem('token')}`,
   },
 }).then((response) => {
   dispatch(AllProjectByUserId(response.data));
 }).catch((err) => {
-  dispatch({ type: 'ALL_PROJECTBYUSERID_FAIL'}, err);
+  dispatch({ type: 'ALL_PROJECTBYUSERID_FAIL' }, err);
 });

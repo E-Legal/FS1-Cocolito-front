@@ -23,7 +23,7 @@ const projectReducer = (state = initState, action) => {
       console.log('all project success ');
       return {
         ...state,
-        projects: action.projects
+        projects: action.projects,
       };
     case 'ALL_PROJECT_FAIL':
       console.log('all project get fail');

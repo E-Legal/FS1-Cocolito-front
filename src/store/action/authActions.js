@@ -1,8 +1,22 @@
 import axios from 'axios';
 
-const api_url = 'https://fs1-cocolito-server.herokuapp.com';
+const apiUrl = 'https://fs1-cocolito-server.herokuapp.com';
 
-export const signIn = (email, password) => (dispatch) => axios.post(`${api_url}/users/login`, {
+export function GetProfileId(profile) {
+  return {
+    type: 'GET_PROFILEID_SUCCESS',
+    profile,
+  };
+}
+
+export function GetProfile(profile) {
+  return {
+    type: 'GET_PROFILE_SUCCESS',
+    profile,
+  };
+}
+
+export const signIn = (email, password) => (dispatch) => axios.post(`${apiUrl}/users/login`, {
   email,
   password,
 }).then((response) => {
@@ -14,7 +28,7 @@ export const signIn = (email, password) => (dispatch) => axios.post(`${api_url}/
   dispatch({ type: 'LOGIN_ERROR', err });
 });
 
-export const logIn = (email, username, password) => (dispatch) => axios.post(`${api_url}/users/register`, {
+export const logIn = (email, username, password) => (dispatch) => axios.post(`${apiUrl}/users/register`, {
   email,
   username,
   password,
@@ -31,7 +45,7 @@ export const signOut = () => (dispatch) => {
   dispatch({ type: 'SIGNOUT_SUCCES' });
 };
 
-export const getProfile = () => (dispatch) => axios.get(`${api_url}/users/profile`, {
+export const getProfile = () => (dispatch) => axios.get(`${apiUrl}/users/profile`, {
   headers: {
     Authorization: `Bearer ${localStorage.getItem('token')}`,
   },
@@ -41,7 +55,7 @@ export const getProfile = () => (dispatch) => axios.get(`${api_url}/users/profil
   dispatch({ type: 'GET_PROFILE_FAIL' }, err);
 });
 
-export const getProfileId = (userid) => (dispatch) => axios.get(api_url + '/users/' + userid.id, {
+export const getProfileId = (userid) => (dispatch) => axios.get(`${apiUrl}/users/${userid.id}`, {
   headers: {
     Authorization: `Bearer ${localStorage.getItem('token')}`,
   },
@@ -50,17 +64,3 @@ export const getProfileId = (userid) => (dispatch) => axios.get(api_url + '/user
 }).catch((err) => {
   dispatch({ type: 'GET_PROFILEID_FAIL' }, err);
 });
-
-export function GetProfileId(profile) {
-  return {
-    type: 'GET_PROFILEID_SUCCESS',
-    profile,
-  };
-}
-
-export function GetProfile(profile) {
-  return {
-    type: 'GET_PROFILE_SUCCESS',
-    profile,
-  };
-}

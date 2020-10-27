@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { formate_date } from './ProjetSummary';
+import { formatDate } from './ProjetSummary';
 import { oneProject } from '../../store/action/projectActions';
 
 const ProjectDetails = (props) => {
@@ -31,7 +31,7 @@ const ProjectDetails = (props) => {
               {project.project.project.username}
             </pre>
           </Link>
-          <div>{formate_date(project.project.project.createdDate)}</div>
+          <div>{formatDate(project.project.project.createdDate)}</div>
         </div>
       </div>
     </div>

@@ -14,6 +14,8 @@ const SignIn = (props) => {
     });
   }
 
+  const { auth } = props;
+
   return (
     <div className="container">
       <form onSubmit={handleSubmit} className="white form_other">
@@ -27,11 +29,11 @@ const SignIn = (props) => {
           <input type="password" id="password" onChange={(event) => setPassword(event.target.value)} />
         </div>
         <div className="input-field">
-          <button className="btn pink lighten-1 z-depth-0">Login</button>
+          <button className="btn pink lighten-1 z-depth-0" type="submit">Login</button>
         </div>
       </form>
       <div className="center red-text" style={{ fontSize: 20 }}>
-        { props.auth.auth.AuthError ? <p>{props.auth.auth.AuthError}</p> : null }
+        { auth.auth.AuthError ? <p>{auth.auth.AuthError}</p> : null }
       </div>
     </div>
   );

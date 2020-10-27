@@ -9,7 +9,7 @@ const InfoBar = ({ room }) => (
       <h3>{room}</h3>
     </div>
     <div className="rightInnerContainer">
-      <a href="/"><button className="btn">Leave Chat</button></a>
+      <a href="/"><button className="btn" type="button">Leave Chat</button></a>
     </div>
   </div>
 );

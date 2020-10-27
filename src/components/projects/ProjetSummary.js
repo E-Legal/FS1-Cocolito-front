@@ -1,11 +1,11 @@
 import React from 'react';
 
-export function formate_date(date) {
-  const _date = new Date(date);
+export function formatDate(date) {
+  const postdate = new Date(date);
   const options = {
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',
   };
-  return _date.toLocaleDateString('fr-FR', options);
+  return postdate.toLocaleDateString('fr-FR', options);
 }
 
 const ProjectSummary = ({ project }) => (
@@ -17,7 +17,7 @@ const ProjectSummary = ({ project }) => (
         {' '}
         {project.username}
       </pre>
-      <p className="grey-text">{formate_date(project.createdDate)}</p>
+      <p className="grey-text">{formatDate(project.createdDate)}</p>
     </div>
   </div>
 );

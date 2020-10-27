@@ -28,9 +28,10 @@ const Chatroom = (props) => {
     setName(name);
     socket.emit('join', { name, room }, (error) => {
       if (error) {
-        alert(error);
+        // DO SOMETHING
       }
     });
+    // eslint-disable-next-line react/destructuring-assignment
   }, [ENDPOINT, props.location.search]);
 
   useEffect(() => {
@@ -55,14 +56,14 @@ const Chatroom = (props) => {
   if (!auth.auth.IsAuth) return <Redirect to="/signin" />;
 
   return (
-      <div className="outerContainer">
-        <div className="chat_container">
-          <InfoBar room={room} />
-          <Messages messages={messages} name={name} />
-          <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
-        </div>
-        <TextContainer users={users} />
+    <div className="outerContainer">
+      <div className="chat_container">
+        <InfoBar room={room} />
+        <Messages messages={messages} name={name} />
+        <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
       </div>
+      <TextContainer users={users} />
+    </div>
   );
 };
 
