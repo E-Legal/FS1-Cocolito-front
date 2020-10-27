@@ -8,7 +8,9 @@ const Dashboard = (props) => {
   useState(() => {
     props.allProject();
   });
+
   const { auth, projects } = props;
+
   if (!auth.auth.IsAuth) return <Redirect to="/signin" />;
   return (
     <div className="dashboard container">

@@ -4,18 +4,20 @@ import { Redirect } from 'react-router-dom';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ProjectList from '../projects/ProjectList';
 import { getProfileId } from '../../store/action/authActions';
-import { allProject } from '../../store/action/projectActions';
+import { projectByUser } from '../../store/action/projectActions';
 
 const ProfilebyID = (props) => {
+  // eslint-disable-next-line consistent-return
   useState(() => {
     const { auth } = props;
     if (auth.auth.IsAuth) {
       props.getProfileId(props.match.params);
-      props.allProject();
+      props.projectByUser(props.match.params);
+    } else {
+      return <Redirect to="/signin" />;
     }
   });
-  const { auth, profile } = props;
-  if (!auth.auth.IsAuth) return <Redirect to="/signin" />;
+  const { profile } = props;
   return (
     <div className="row">
       <div className="col s6">
@@ -54,7 +56,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getProfileId: (userid) => dispatch(getProfileId(userid)),
-  allProject: () => dispatch(allProject()),
+  projectByUser: (userid) => dispatch(projectByUser(userid)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfilebyID);

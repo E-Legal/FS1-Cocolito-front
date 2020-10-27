@@ -3,8 +3,6 @@ const initState = {
   ],
   project: {
   },
-  project_user: [
-  ],
 };
 
 const projectReducer = (state = initState, action) => {
@@ -41,14 +39,25 @@ const projectReducer = (state = initState, action) => {
       return {
         ...state,
       };
-    case 'ALL_PROJECTBYUSERID_SUCCES':
+    case 'ALL_PROJECTBYUSER_SUCCES':
       console.log('all project by user id success');
       return {
         ...state,
-        project_user: action.project,
+        projects: action.project,
       };
-    case 'ALL_PROJECTBYUSERID_FAIL':
+    case 'ALL_PROJECTBYUSER_FAIL':
       console.log('all project by user id fail');
+      return {
+        ...state,
+      };
+    case 'ALL_PROJECTBYME_SUCCES':
+      console.log('all project by me success');
+      return {
+        ...state,
+        projects: action.project,
+      };
+    case 'ALL_PROJECTBYME_FAIL':
+      console.log('all project by me fail');
       return {
         ...state,
       };
