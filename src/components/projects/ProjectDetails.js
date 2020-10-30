@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { formatDate } from './ProjetSummary';
 import { oneProject } from '../../store/action/projectActions';
 
@@ -9,6 +10,7 @@ const ProjectDetails = (props) => {
     props.oneProject(props.match.params);
   });
   const { auth, project } = props;
+  const { t } = useTranslation();
   if (!auth.auth.IsAuth) return <Redirect to="/signin" />;
   return (
     <div className="container section project-details">
@@ -26,7 +28,7 @@ const ProjectDetails = (props) => {
         <div className="card-action grey lighten-4 green-text">
           <Link to={`/profile/${project.project.project.user_id}`} key={project.project.project.user_id}>
             <pre>
-              Posted by
+              {t('posted_by.label')}
               {' '}
               {project.project.project.username}
             </pre>

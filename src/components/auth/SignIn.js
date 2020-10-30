@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { signIn } from '../../store/action/authActions';
 import history from '../../history';
 
@@ -15,21 +16,22 @@ const SignIn = (props) => {
   }
 
   const { auth } = props;
+  const { t } = useTranslation();
 
   return (
     <div className="container">
       <form onSubmit={handleSubmit} className="white form_other">
-        <h5 className="grey-text text-darken-3">Sign In</h5>
+        <h5 className="grey-text text-darken-3">{t('sign_in.label')}</h5>
         <div className="input-field">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">{t('sign_in_email.label')}</label>
           <input type="email" id="email" onChange={(event) => setEmail(event.target.value)} />
         </div>
         <div className="input-field">
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">{t('sign_in_password.label')}</label>
           <input type="password" id="password" onChange={(event) => setPassword(event.target.value)} />
         </div>
         <div className="input-field">
-          <button className="btn pink lighten-1 z-depth-0" type="submit">Login</button>
+          <button className="btn pink lighten-1 z-depth-0" type="submit">{t('sign_in_button.label')}</button>
         </div>
       </form>
       <div className="center red-text" style={{ fontSize: 20 }}>

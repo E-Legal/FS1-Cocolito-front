@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import '../../css/Profile.css';
+import { useTranslation } from 'react-i18next';
 import { getProfile } from '../../store/action/authActions';
 import { projectByMe } from '../../store/action/projectActions';
 import ProjectList from '../projects/ProjectList';
@@ -18,28 +19,43 @@ const Profile = (props) => {
       return <Redirect to="/signin" />;
     }
   });
+
   const { profile } = props;
+  const { t } = useTranslation();
+
   return (
     <div className="row">
       <div className="col s6">
         <div className="container profile_page" align="center">
           <div className="row">
-            <h1>PROFILE</h1>
+            <h1>{t('profile.label')}</h1>
             <AccountCircleIcon style={{ fontSize: 90, color: '#FFF' }} />
           </div>
           <div className="row profile_content">
-            <h5>USERNAME :</h5>
+            <h5>
+              {t('username.label')}
+              {' '}
+              :
+            </h5>
             <span>{profile.auth.profile.username}</span>
-            <h5>ID :</h5>
+            <h5>
+              {t('id.label')}
+              {' '}
+              :
+            </h5>
             <span>{profile.auth.profile.id}</span>
-            <h5>EMAIL :</h5>
+            <h5>
+              {t('email.label')}
+              {' '}
+              :
+            </h5>
             <span>{profile.auth.profile.email}</span>
           </div>
         </div>
       </div>
       <div className="col s6">
         <div className="container profile_page">
-          <h1>USER POST</h1>
+          <h1>{t('user_post.label')}</h1>
         </div>
         <div className="container">
           <ProjectList projects={profile.project.projects} />
