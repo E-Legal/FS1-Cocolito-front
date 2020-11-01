@@ -19,8 +19,6 @@ const ProjectDetails = (props) => {
           <span className="card-title">
             <pre>
               {project.project.project.title}
-              -
-              {project.project.project.id}
             </pre>
           </span>
           <p>{project.project.project.message}</p>

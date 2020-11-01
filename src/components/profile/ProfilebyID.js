@@ -24,7 +24,7 @@ const ProfilebyID = (props) => {
 
   return (
     <div className="row">
-      <div className="col s6">
+      <div className="col s12 m6 l6">
         <div className="container profile_page" align="center">
           <div className="row">
             <h1>{t('profile.label')}</h1>
@@ -55,7 +55,7 @@ const ProfilebyID = (props) => {
           </div>
         </div>
       </div>
-      <div className="col s6">
+      <div className="col s12 m6 l6">
         <div className="container profile_page">
           <h1>{t('user_post.label')}</h1>
         </div>
